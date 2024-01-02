@@ -1,5 +1,6 @@
 import 'package:lara_quiz/widgets/landing_page.dart';
 import 'package:flutter/material.dart';
+import 'package:lara_quiz/widgets/questions_screen.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -10,6 +11,19 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  Widget? activeScreen;
+
+@override
+  void initState() {
+    activeScreen = LandingPage(switchScreen);
+    super.initState();
+  }
+  void switchScreen() {
+    setState(() {
+      activeScreen = const QuestionScreen();
+    });
+  }
+
   @override
   Widget build(context) {
     return MaterialApp(
@@ -23,7 +37,7 @@ class _QuizState extends State<Quiz> {
                 ],
               ),
             ),
-            child: const LandingPage()),
+            child: activeScreen),
       ),
     );
   }

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class LandingPage extends StatelessWidget {
-  const LandingPage({Key? key}) : super(key: key);
+  const LandingPage(this.startQuiz, {Key? key}) : super(key: key);
+
+  final void Function() startQuiz;
   final String heading = "Learn Laravel the fun way";
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class LandingPage extends StatelessWidget {
           const SizedBox(height: 30),
           OutlinedButton.icon(
               onPressed: () {
-                print("Lets start quiz");
+                startQuiz();
               },
               style: OutlinedButton.styleFrom(foregroundColor: Colors.white),
               icon: const Icon(Icons.arrow_right_alt),
