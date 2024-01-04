@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:lara_quiz/data/questions.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen({super.key, required this.questionAnswers});
+
   final List<String> questionAnswers;
+  List<Map<String, Object>> getSummaryData() {
+    final List<Map<String, Object>> summary = [];
+    for (var i = 0; i <= questionAnswers.length; i++) {
+      summary.add({
+        'question_index': i,
+        'question': questions[i].text,
+        'correct_answer': questions[i].answers[0],
+        'user_answer': questionAnswers[i]
+      });
+    }
+
+    return summary;
+  }
 
   @override
   Widget build(BuildContext context) {
