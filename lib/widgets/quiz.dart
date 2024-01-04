@@ -1,6 +1,8 @@
 import 'package:lara_quiz/widgets/landing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:lara_quiz/widgets/questions_screen.dart';
+import 'package:lara_quiz/data/questions.dart';
+import 'package:lara_quiz/widgets/results_screen.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -11,21 +13,38 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  Widget? activeScreen;
-
-@override
-  void initState() {
-    activeScreen = LandingPage(switchScreen);
-    super.initState();
-  }
+  List<String> selectedAnswers = [];
+  var activeScreen = 'landing_page';
+  @override
   void switchScreen() {
     setState(() {
-      activeScreen = const QuestionScreen();
+      activeScreen = 'questions_screen';
     });
   }
 
+  void chooseAnswer(String answer) {
+    selectedAnswers.add(answer);
+    if (selectedAnswers.length == questions.length) {
+      setState(() {
+        selectedAnswers = [];
+        activeScreen = 'results_screen';
+      });
+    }
+  }
+
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
+    Widget screenWidget = LandingPage(switchScreen);
+    if (activeScreen == 'questions_screen') {
+      screenWidget = QuestionScreen(
+        onSelectAnswer: chooseAnswer,
+      );
+    }
+
+    if (activeScreen == 'results_screen') {
+      screenWidget = ResultsScreen(questionAnswers: selectedAnswers);
+    }
+
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -37,7 +56,7 @@ class _QuizState extends State<Quiz> {
                 ],
               ),
             ),
-            child: activeScreen),
+            child: screenWidget),
       ),
     );
   }
