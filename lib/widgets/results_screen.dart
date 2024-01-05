@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lara_quiz/data/questions.dart';
 import 'package:lara_quiz/widgets/question_summary.dart';
@@ -22,6 +23,11 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final summaryData = getSummaryData();
+    final totalNumberOfQuestions = questions.length;
+    final score = summaryData.where((data) {
+      return data['user_answer'] == data['correct_answer'];
+    }).length;
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -31,9 +37,10 @@ class ResultsScreen extends StatelessWidget {
                 .center, //alternative to using center widget to center elements.
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Text(questionAnswers[0]),
+              Text(
+                  'You Answered $score out of $totalNumberOfQuestions questions correctly!'),
               const SizedBox(height: 30),
-              QuestionSummary(getSummaryData()),
+              QuestionSummary(summaryData),
               const SizedBox(
                 height: 30,
               ),
