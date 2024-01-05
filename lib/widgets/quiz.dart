@@ -15,7 +15,6 @@ class Quiz extends StatefulWidget {
 class _QuizState extends State<Quiz> {
   List<String> selectedAnswers = [];
   var activeScreen = 'landing_page';
-  @override
   void switchScreen() {
     setState(() {
       activeScreen = 'questions_screen';
@@ -26,7 +25,6 @@ class _QuizState extends State<Quiz> {
     selectedAnswers.add(answer);
     if (selectedAnswers.length == questions.length) {
       setState(() {
-        selectedAnswers = [];
         activeScreen = 'results_screen';
       });
     }
