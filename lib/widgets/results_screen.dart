@@ -1,12 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lara_quiz/data/questions.dart';
-import 'package:lara_quiz/widgets/question_summary.dart';
+import 'package:lara_quiz/widgets/questions_summary/question_summary.dart';
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({super.key, required this.questionAnswers});
+  const ResultsScreen(
+      {super.key, required this.questionAnswers, required this.restartQuiz});
 
+  final void Function() restartQuiz;
   final List<String> questionAnswers;
+
   List<Map<String, Object>> getSummaryData() {
     final List<Map<String, Object>> summary = [];
     for (var i = 0; i < questionAnswers.length; i++) {
@@ -38,13 +42,25 @@ class ResultsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                  'You Answered $score out of $totalNumberOfQuestions questions correctly!'),
+                'You Answered $score out of $totalNumberOfQuestions questions correctly!',
+                style: GoogleFonts.lato(
+                  color: const Color.fromARGB(255, 230, 200, 253),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               const SizedBox(height: 30),
               QuestionSummary(summaryData),
               const SizedBox(
                 height: 30,
               ),
-              TextButton(onPressed: () {}, child: const Text('Restart Quiz'))
+              TextButton.icon(
+                  onPressed: (restartQuiz),
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                  ),
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('Restart Quiz'))
             ]),
       ),
     );
