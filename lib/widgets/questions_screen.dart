@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lara_quiz/widgets/answer_button.dart';
-import 'package:lara_quiz/data/questions.dart';
+import 'package:lara_test/widgets/answer_button.dart';
+import 'package:lara_test/data/questions.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lara_test/widgets/question_number.dart';
 
 class QuestionScreen extends StatefulWidget {
   const QuestionScreen({super.key, required this.onSelectAnswer});
@@ -34,15 +35,16 @@ class _QuestionScreenState extends State<QuestionScreen> {
               .center, //alternative to using center widget to center elements.
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            QuestionNumber(number: currentQuestion.number),
+            const SizedBox(
+              height: 40,
+            ),
             Text(
               currentQuestion.text,
-              style: GoogleFonts.lato(
-                  color: const Color.fromARGB(255, 138, 92, 180),
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 40),
             ...currentQuestion.getShuffledAnswers().map((answer) {
               return AnswerButton(
                 answerText: answer,

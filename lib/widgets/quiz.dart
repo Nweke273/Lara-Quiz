@@ -1,8 +1,11 @@
-import 'package:lara_quiz/widgets/landing_page.dart';
+import 'package:lara_test/data/app_config.dart';
+import 'package:lara_test/widgets/disclaimer_screen.dart';
+import 'package:lara_test/widgets/landing_page.dart';
 import 'package:flutter/material.dart';
-import 'package:lara_quiz/widgets/questions_screen.dart';
-import 'package:lara_quiz/data/questions.dart';
-import 'package:lara_quiz/widgets/results_screen.dart';
+import 'package:lara_test/widgets/questions_screen.dart';
+import 'package:lara_test/data/questions.dart';
+import 'package:lara_test/widgets/quiz_instruction.dart';
+import 'package:lara_test/widgets/results_screen.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -17,7 +20,25 @@ class _QuizState extends State<Quiz> {
   var activeScreen = 'landing_page';
   void switchScreen() {
     setState(() {
-      activeScreen = 'questions_screen';
+      activeScreen = 'disclaimer_screen';
+    });
+  }
+
+  void startNow() {
+    setState(() {
+      activeScreen = "questions_screen";
+    });
+  }
+
+  void startQuiz() {
+    setState(() {
+      activeScreen = "questions_screen";
+    });
+  }
+
+  void quizInstruction() {
+    setState(() {
+      activeScreen = "quiz_instruction";
     });
   }
 
@@ -40,6 +61,7 @@ class _QuizState extends State<Quiz> {
   @override
   Widget build(BuildContext context) {
     Widget screenWidget = LandingPage(switchScreen);
+    Widget appTitle = const Text('Lara Quiz');
     if (activeScreen == 'questions_screen') {
       screenWidget = QuestionScreen(
         onSelectAnswer: chooseAnswer,
@@ -56,19 +78,17 @@ class _QuizState extends State<Quiz> {
         onSelectAnswer: chooseAnswer,
       );
     }
-    return MaterialApp(
-      home: Scaffold(
-        body: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color.fromARGB(255, 78, 13, 151),
-                  Color.fromARGB(255, 107, 15, 168),
-                ],
-              ),
-            ),
-            child: screenWidget),
-      ),
+
+    if (activeScreen == 'disclaimer_screen') {
+      screenWidget = DisclaimerScreen(quizInstruction);
+    }
+
+    if (activeScreen == 'quiz_instruction') {
+      screenWidget = QuizInstruction(startQuiz);
+    }
+
+    return Scaffold(
+      body: Container(child: screenWidget),
     );
   }
 }

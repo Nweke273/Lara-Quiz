@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lara_quiz/widgets/questions_summary/question_identifier.dart';
+import 'package:lara_test/widgets/questions_summary/question_identifier.dart';
 
 class SummaryItem extends StatelessWidget {
   const SummaryItem(this.itemData, {super.key});
@@ -26,8 +26,8 @@ class SummaryItem extends StatelessWidget {
               children: [
                 Text(
                   itemData['question'] as String,
-                  style: GoogleFonts.lato(color: Colors.white, fontSize: 16),
                   textAlign: TextAlign.left,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(
                   height: 5,
@@ -39,8 +39,9 @@ class SummaryItem extends StatelessWidget {
                 ),
                 Text(
                   itemData['correct_answer'] as String,
-                  style:
-                      GoogleFonts.lato(color: Colors.cyanAccent, fontSize: 16),
+                  style: GoogleFonts.lato(
+                      color: const Color.fromARGB(255, 3, 136, 153),
+                      fontSize: 16),
                   textAlign: TextAlign.left,
                 )
               ],

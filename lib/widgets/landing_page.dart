@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:lara_test/main.dart';
 
 class LandingPage extends StatelessWidget {
-  const LandingPage(this.startQuiz, {Key? key}) : super(key: key);
+  const LandingPage(this.showDisclaimer, {Key? key}) : super(key: key);
 
-  final void Function() startQuiz;
+  final void Function() showDisclaimer;
   final String heading = "Learn Laravel the fun way";
   @override
   Widget build(BuildContext context) {
@@ -15,22 +15,20 @@ class LandingPage extends StatelessWidget {
           Image.asset(
             'assets/images/quiz-logo.png',
             width: 300,
-            color: const Color.fromARGB(150, 255, 255, 255),
+            color: kColorScheme.onPrimaryContainer,
           ),
           const SizedBox(height: 80),
           Text(
             heading,
-            style: const TextStyle(
-                color: Color.fromARGB(255, 237, 223, 252), fontSize: 24),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: 30),
           OutlinedButton.icon(
               onPressed: () {
-                startQuiz();
+                showDisclaimer();
               },
-              style: OutlinedButton.styleFrom(foregroundColor: Colors.white),
               icon: const Icon(Icons.arrow_right_alt),
-              label: const Text('Start Quiz'))
+              label: const Text('Get Started'))
         ],
       ),
     );

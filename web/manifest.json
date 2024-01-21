@@ -1,6 +1,6 @@
 {
-    "name": "lara_quiz",
-    "short_name": "lara_quiz",
+    "name": "lara_test",
+    "short_name": "lara_test",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

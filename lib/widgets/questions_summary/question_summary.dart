@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lara_quiz/widgets/questions_summary/summary_item.dart';
+import 'package:lara_test/widgets/questions_summary/summary_item.dart';
 
 class QuestionSummary extends StatelessWidget {
   const QuestionSummary(this.summaryData, {super.key});

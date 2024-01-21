@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lara_quiz/data/questions.dart';
-import 'package:lara_quiz/widgets/questions_summary/question_summary.dart';
+import 'package:lara_test/data/questions.dart';
+import 'package:lara_test/widgets/questions_summary/question_summary.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen(
@@ -43,11 +43,8 @@ class ResultsScreen extends StatelessWidget {
             children: [
               Text(
                 'You Answered $score out of $totalNumberOfQuestions questions correctly!',
-                style: GoogleFonts.lato(
-                  color: const Color.fromARGB(255, 230, 200, 253),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.titleLarge,
+                textAlign: TextAlign.center,
               ),
               const SizedBox(height: 30),
               QuestionSummary(summaryData),
@@ -56,9 +53,6 @@ class ResultsScreen extends StatelessWidget {
               ),
               TextButton.icon(
                   onPressed: (restartQuiz),
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                  ),
                   icon: const Icon(Icons.refresh),
                   label: const Text('Restart Quiz'))
             ]),

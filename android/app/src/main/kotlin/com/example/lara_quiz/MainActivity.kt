@@ -1,4 +1,4 @@
-package com.example.lara_quiz
+package com.example.lara_test
 
 import io.flutter.embedding.android.FlutterActivity
 

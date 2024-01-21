@@ -7,15 +7,17 @@ class AnswerButton extends StatelessWidget {
   final void Function() onTap;
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onTap,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color.fromARGB(255, 33, 1, 95),
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: OutlinedButton(
+        onPressed: onTap,
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+        ),
+        child: Text(answerText, textAlign: TextAlign.center,),
       ),
-      child: Text(answerText, textAlign: TextAlign.center,),
     );
   }
 }
